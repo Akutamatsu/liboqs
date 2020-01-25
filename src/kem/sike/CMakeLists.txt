@@ -7,16 +7,28 @@ set(SRCS kem_sike.c
          P751/P751.c
          P751/P751_compressed.c)
 
-add_library(sike OBJECT ${SRCS})
-
-# FIXMEOQS: enable FAST mode, assembly
-target_compile_definitions(sike PRIVATE _GENERIC_)
 if(${ARCH} STREQUAL "x86")
-    target_compile_definitions(sike PRIVATE _X86_)
+    add_compile_definitions(sike PRIVATE _GENERIC_ _X86_)
 elseif(${ARCH} STREQUAL "x86_64")
-    target_compile_definitions(sike PRIVATE _AMD64_)
-elseif(${ARCH} STREQUAL "arm")
-    target_compile_definitions(sike PRIVATE _ARM_)
-elseif(${ARCH} STREQUAL "arm64")
-    target_compile_definitions(sike PRIVATE _ARM64_)
+    add_compile_definitions(sike PRIVATE _AMD64_)
+    if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
+        set(SRCS ${SRCS} P503/AMD64/fp_x64_asm.S
+                         P751/AMD64/fp_x64_asm.S)
+        if(USE_BMI2_INSTRUCTIONS)
+            add_compile_definitions(_MULX_ _ADX_)
+            set(SRCS ${SRCS} P434/AMD64/fp_x64_asm.S
+                             P610/AMD64/fp_x64_asm.S)
+    endif()
 endif()
+elseif(${ARCH} STREQUAL "arm")
+    add_compile_definitions(sike PRIVATE _GENERIC_ _ARM_)
+elseif(${ARCH} STREQUAL "arm64")
+    add_compile_definitions(sike PRIVATE _ARM64_)
+    if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
+        set(SRCS ${SRCS} P503/AMD64/fp_x64_asm.S
+                         P751/AMD64/fp_x64_asm.S)
+    endif()
+endif()
+
+
+add_library(sike OBJECT ${SRCS})
