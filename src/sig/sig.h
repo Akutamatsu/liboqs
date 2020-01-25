@@ -316,15 +316,9 @@ OQS_API void OQS_SIG_free(OQS_SIG *sig);
 #include <oqs/sig_qtesla.h>
 #endif /* ENABLE_SIG_QTESLA */
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_INCLUDE_START
-#ifdef ENABLE_SIG_DILITHIUM
 #include <oqs/sig_dilithium.h>
-#endif /* ENABLE_SIG_DILITHIUM */
-#ifdef ENABLE_SIG_MQDSS
 #include <oqs/sig_mqdss.h>
-#endif /* ENABLE_SIG_MQDSS */
-#ifdef ENABLE_SIG_SPHINCS
 #include <oqs/sig_sphincs.h>
-#endif /* ENABLE_SIG_SPHINCS */
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_INCLUDE_END
 // EDIT-WHEN-ADDING-SIG
 

@@ -3,9 +3,6 @@
 
 /* Enable schemes supported on Windows */
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_KEMS_START
-#define OQS_ENABLE_KEM_kyber_512
-#define OQS_ENABLE_KEM_kyber_768
-#define OQS_ENABLE_KEM_kyber_1024
 #define OQS_ENABLE_KEM_kyber_512_90s
 #define OQS_ENABLE_KEM_kyber_768_90s
 #define OQS_ENABLE_KEM_kyber_1024_90s

@@ -40,12 +40,6 @@ extern "C" {
 /** Algorithm identifier for BIKE1-L3-FO KEM. */
 #define OQS_KEM_alg_bike1_l3_fo "BIKE1-L3-FO"
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALG_IDENTIFIER_START
-/** Algorithm identifier for Kyber512 KEM. */
-#define OQS_KEM_alg_kyber_512 "Kyber512"
-/** Algorithm identifier for Kyber768 KEM. */
-#define OQS_KEM_alg_kyber_768 "Kyber768"
-/** Algorithm identifier for Kyber1024 KEM. */
-#define OQS_KEM_alg_kyber_1024 "Kyber1024"
 /** Algorithm identifier for Kyber512-90s KEM. */
 #define OQS_KEM_alg_kyber_512_90s "Kyber512-90s"
 /** Algorithm identifier for Kyber768-90s KEM. */
@@ -118,7 +112,7 @@ extern "C" {
 // EDIT-WHEN-ADDING-KEM
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALGS_LENGTH_START
 /** Number of algorithm identifiers above. */
-#define OQS_KEM_algs_length 42
+#define OQS_KEM_algs_length 39
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -293,18 +287,10 @@ OQS_API void OQS_KEM_free(OQS_KEM *kem);
 #include <oqs/kem_bike.h>
 #endif /* ENABLE_KEM_BIKE */
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_INCLUDE_START
-#ifdef ENABLE_KEM_KYBER
 #include <oqs/kem_kyber.h>
-#endif /* ENABLE_KEM_KYBER */
-#ifdef ENABLE_KEM_NEWHOPE
 #include <oqs/kem_newhope.h>
-#endif /* ENABLE_KEM_KYBER */
-#ifdef ENABLE_KEM_NTRU
 #include <oqs/kem_ntru.h>
-#endif /* ENABLE_KEM_NTRU */
-#ifdef ENABLE_KEM_SABER
 #include <oqs/kem_saber.h>
-#endif /* ENABLE_KEM_SABER */
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_INCLUDE_END
 #ifdef ENABLE_KEM_FRODOKEM
 #include <oqs/kem_frodokem.h>

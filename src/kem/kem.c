@@ -14,7 +14,7 @@ OQS_API const char *OQS_KEM_alg_identifier(size_t i) {
 	    OQS_KEM_alg_default,
 	    OQS_KEM_alg_bike1_l1_cpa, OQS_KEM_alg_bike1_l3_cpa, OQS_KEM_alg_bike1_l1_fo, OQS_KEM_alg_bike1_l3_fo,
 	    ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALG_IDENTIFIER_START
-	    OQS_KEM_alg_kyber_512, OQS_KEM_alg_kyber_768, OQS_KEM_alg_kyber_1024, OQS_KEM_alg_kyber_512_90s, OQS_KEM_alg_kyber_768_90s, OQS_KEM_alg_kyber_1024_90s,
+	    OQS_KEM_alg_kyber_512_90s, OQS_KEM_alg_kyber_768_90s, OQS_KEM_alg_kyber_1024_90s,
 	    OQS_KEM_alg_newhope_512cca, OQS_KEM_alg_newhope_1024cca,
 	    OQS_KEM_alg_ntru_hps2048509, OQS_KEM_alg_ntru_hps2048677, OQS_KEM_alg_ntru_hps4096821, OQS_KEM_alg_ntru_hrss701,
 	    OQS_KEM_alg_saber_lightsaber, OQS_KEM_alg_saber_saber, OQS_KEM_alg_saber_firesaber,
@@ -67,24 +67,6 @@ OQS_API int OQS_KEM_alg_is_enabled(const char *method_name) {
 		return 0;
 #endif
 		///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ENABLED_CASE_START
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_512)) {
-#ifdef OQS_ENABLE_KEM_kyber_512
-		return 1;
-#else
-		return 0;
-#endif
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_768)) {
-#ifdef OQS_ENABLE_KEM_kyber_768
-		return 1;
-#else
-		return 0;
-#endif
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_1024)) {
-#ifdef OQS_ENABLE_KEM_kyber_1024
-		return 1;
-#else
-		return 0;
-#endif
 	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_512_90s)) {
 #ifdef OQS_ENABLE_KEM_kyber_512_90s
 		return 1;
@@ -327,24 +309,6 @@ OQS_API OQS_KEM *OQS_KEM_new(const char *method_name) {
 		return NULL;
 #endif
 		///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_NEW_CASE_START
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_512)) {
-#ifdef OQS_ENABLE_KEM_kyber_512
-		return OQS_KEM_kyber_512_new();
-#else
-		return NULL;
-#endif
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_768)) {
-#ifdef OQS_ENABLE_KEM_kyber_768
-		return OQS_KEM_kyber_768_new();
-#else
-		return NULL;
-#endif
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_1024)) {
-#ifdef OQS_ENABLE_KEM_kyber_1024
-		return OQS_KEM_kyber_1024_new();
-#else
-		return NULL;
-#endif
 	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_512_90s)) {
 #ifdef OQS_ENABLE_KEM_kyber_512_90s
 		return OQS_KEM_kyber_512_90s_new();

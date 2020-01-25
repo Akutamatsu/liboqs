@@ -4,27 +4,6 @@ kems:
     visual_studio_guid: 8db00bac-a963-4875-b0a1-945bfed08037
     schemes:
       - 
-        scheme: "512"
-        pqclean_scheme: kyber512
-        pretty_name_full: Kyber512
-        implementation: clean
-        sources: ['cbd.c', 'indcpa.c', 'kem.c', 'ntt.c', 'poly.c', 'polyvec.c', 'reduce.c', 'verify.c', 'symmetric-fips202.c']
-        visual_studio_guid: 80001dfa-c3e2-478f-8705-95bafd3f33d3
-      - 
-        scheme: "768"
-        pqclean_scheme: kyber768
-        pretty_name_full: Kyber768
-        implementation: clean
-        sources: ['cbd.c', 'indcpa.c', 'kem.c', 'ntt.c', 'poly.c', 'polyvec.c', 'reduce.c', 'verify.c', 'symmetric-fips202.c']
-        visual_studio_guid: 815e88b5-b5d7-43c6-b0c0-2a045a0c7aa6
-      - 
-        scheme: "1024"
-        pqclean_scheme: kyber1024
-        pretty_name_full: Kyber1024
-        implementation: clean
-        sources: ['cbd.c', 'indcpa.c', 'kem.c', 'ntt.c', 'poly.c', 'polyvec.c', 'reduce.c', 'verify.c', 'symmetric-fips202.c']
-        visual_studio_guid: fd3c9627-9462-409f-9cdb-0c6566370dbe
-      - 
         scheme: "512_90s"
         pqclean_scheme: kyber512-90s
         pretty_name_full: Kyber512-90s

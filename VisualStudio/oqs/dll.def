@@ -8,15 +8,6 @@ EXPORTS
 	OQS_KEM_encaps
 	OQS_KEM_decaps
 	OQS_KEM_free
-	OQS_KEM_kyber_512_decaps
-	OQS_KEM_kyber_512_encaps
-	OQS_KEM_kyber_512_keypair
-	OQS_KEM_kyber_768_decaps
-	OQS_KEM_kyber_768_encaps
-	OQS_KEM_kyber_768_keypair
-	OQS_KEM_kyber_1024_decaps
-	OQS_KEM_kyber_1024_encaps
-	OQS_KEM_kyber_1024_keypair
 	OQS_KEM_kyber_512_90s_decaps
 	OQS_KEM_kyber_512_90s_encaps
 	OQS_KEM_kyber_512_90s_keypair
