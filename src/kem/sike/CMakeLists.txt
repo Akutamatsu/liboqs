@@ -8,9 +8,9 @@ set(SRCS kem_sike.c
          P751/P751_compressed.c)
 
 if(${ARCH} STREQUAL "x86")
-    add_compile_definitions(sike PRIVATE _GENERIC_ _X86_)
+    add_compile_definitions(_GENERIC_ _X86_)
 elseif(${ARCH} STREQUAL "x86_64")
-    add_compile_definitions(sike PRIVATE _AMD64_)
+    add_compile_definitions(_AMD64_)
     if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
         set(SRCS ${SRCS} P503/AMD64/fp_x64_asm.S
                          P751/AMD64/fp_x64_asm.S)
@@ -21,9 +21,9 @@ elseif(${ARCH} STREQUAL "x86_64")
     endif()
 endif()
 elseif(${ARCH} STREQUAL "arm")
-    add_compile_definitions(sike PRIVATE _GENERIC_ _ARM_)
+    add_compile_definitions(_GENERIC_ _ARM_)
 elseif(${ARCH} STREQUAL "arm64")
-    add_compile_definitions(sike PRIVATE _ARM64_)
+    add_compile_definitions(_ARM64_)
     if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
         set(SRCS ${SRCS} P503/AMD64/fp_x64_asm.S
                          P751/AMD64/fp_x64_asm.S)
