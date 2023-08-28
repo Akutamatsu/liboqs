@@ -41,8 +41,13 @@ set(PUBLIC_HEADERS ${PROJECT_SOURCE_DIR}/src/oqs.h
             ${PROJECT_SOURCE_DIR}/src/crypto/sha3/sha3.h
             ${PROJECT_SOURCE_DIR}/src/kem/kem.h
             ${PROJECT_SOURCE_DIR}/src/sig/sig.h)
+
 if(ENABLE_KEM_BIKE)
     set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/kem/bike/kem_bike.h)
+endif()
+
+if(ENABLE_KEM_EXTRAHOPE)
+    set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/kem/extrahope/kem_extrahope.h)
 endif()
 if(ENABLE_KEM_FRODOKEM)
     set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/kem/frodokem/kem_frodokem.h)

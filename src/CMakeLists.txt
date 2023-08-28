@@ -1,6 +1,12 @@
 add_subdirectory(common)
 add_subdirectory(crypto)
 
+# MY CUSTOM ALG
+if(ENABLE_KEM_EXTRAHOPE)
+    add_subdirectory(kem/extrahope)
+    set(KEM_OBJS ${KEM_OBJS} $<TARGET_OBJECTS:extrahope>)
+endif()
+
 if(ENABLE_KEM_BIKE)
     add_subdirectory(kem/bike)
     set(KEM_OBJS ${BIKE_OBJS})

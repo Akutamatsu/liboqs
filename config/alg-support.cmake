@@ -16,6 +16,10 @@ if(NOT WIN32)
     cmake_dependent_option(OQS_ENABLE_KEM_bike1_l3_fo "" ON "ENABLE_KEM_BIKE" OFF)
 endif()
 
+# MY CUSTOM ALG
+option(ENABLE_KEM_EXTRAHOPE "" ON)
+cmake_dependent_option(OQS_ENABLE_KEM_extrahope512 "" ON "ENABLE_KEM_EXTRAHOPE" OFF)
+
 option(ENABLE_KEM_FRODOKEM "Enable FrodoKEM" ON)
 cmake_dependent_option(OQS_ENABLE_KEM_frodokem_640_aes "" ON "ENABLE_KEM_FRODOKEM" OFF)
 cmake_dependent_option(OQS_ENABLE_KEM_frodokem_640_shake "" ON "ENABLE_KEM_FRODOKEM" OFF)
