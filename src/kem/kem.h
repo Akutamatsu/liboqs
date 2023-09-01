@@ -40,6 +40,8 @@ extern "C" {
 /** Algorithm identifier for BIKE1-L3-FO KEM. */
 #define OQS_KEM_alg_bike1_l3_fo "BIKE1-L3-FO"
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALG_IDENTIFIER_START
+/** Algorithm identifier for extraHope512 KEM. */
+#define OQS_KEM_alg_extrahope_512 "extraHope512"
 /** Algorithm identifier for Kyber512-90s KEM. */
 #define OQS_KEM_alg_kyber_512_90s "Kyber512-90s"
 /** Algorithm identifier for Kyber768-90s KEM. */
@@ -112,7 +114,7 @@ extern "C" {
 // EDIT-WHEN-ADDING-KEM
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALGS_LENGTH_START
 /** Number of algorithm identifiers above. */
-#define OQS_KEM_algs_length 39
+#define OQS_KEM_algs_length 40
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -287,6 +289,7 @@ OQS_API void OQS_KEM_free(OQS_KEM *kem);
 #include <oqs/kem_bike.h>
 #endif /* ENABLE_KEM_BIKE */
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_INCLUDE_START
+#include <oqs/kem_extrahope.h>
 #include <oqs/kem_kyber.h>
 #include <oqs/kem_newhope.h>
 #include <oqs/kem_ntru.h>

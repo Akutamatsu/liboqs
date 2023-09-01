@@ -41,6 +41,9 @@
 #cmakedefine OQS_ENABLE_KEM_frodokem_1344_aes
 #cmakedefine OQS_ENABLE_KEM_frodokem_1344_shake
 
+#cmakedefine ENABLE_KEM_EXTRAHOPE
+#cmakedefine OQS_ENABLE_KEM_extrahope_512
+
 #cmakedefine ENABLE_KEM_KYBER
 #cmakedefine OQS_ENABLE_KEM_kyber_512
 #cmakedefine OQS_ENABLE_KEM_kyber_512_90s
