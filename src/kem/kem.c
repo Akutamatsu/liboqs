@@ -68,7 +68,7 @@ OQS_API int OQS_KEM_alg_is_enabled(const char *method_name) {
 		return 0;
 #endif
 		///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ENABLED_CASE_START
-	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_extrahopte_512)) {
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_extrahope_512)) {
 #ifdef OQS_ENABLE_KEM_extrahope_512
 		return 1;
 #else
@@ -316,6 +316,12 @@ OQS_API OQS_KEM *OQS_KEM_new(const char *method_name) {
 		return NULL;
 #endif
 		///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_NEW_CASE_START
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_extrahope_512)) {
+#ifdef OQS_ENABLE_KEM_extrahope_512
+		return OQS_KEM_extrahope512_new();
+#else
+		return NULL;
+#endif
 	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_kyber_512_90s)) {
 #ifdef OQS_ENABLE_KEM_kyber_512_90s
 		return OQS_KEM_kyber_512_90s_new();
