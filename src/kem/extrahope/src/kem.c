@@ -19,9 +19,15 @@
 **************************************************/
 int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_keypair(unsigned char *pk, unsigned char *sk)
 {
-  PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_keypair(pk, sk);                                                        /* First put the actual secret key into sk */
-
-  return 0;
+    size_t i;
+    PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_keypair(pk, sk);/* First put the actual secret key into sk */
+    for (i = 0; i < EXHOPE_CPAPKE_PUBLICKEYBYTES; i++) {
+        sk[i + EXHOPE_CPAPKE_SECRETKEYBYTES] = pk[i];
+    }
+    /* No need for the re-encryption */
+    /* No need for the value s for rejection */
+    
+    return 0;
 }
 
 /*************************************************
@@ -39,15 +45,26 @@ int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_keypair(unsigned char *pk, unsigned ch
 int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_enc(unsigned char *ct, unsigned char *ss, const unsigned char *pk)
 {
   unsigned char buf[2*RNDBYTES_LEN];
+  shake256incctx state;
+  
   randombytes(buf,RNDBYTES_LEN);
   shake256(buf,2*RNDBYTES_LEN,buf,RNDBYTES_LEN);  /* Don't release system RNG output */
 
-  PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_enc(ct, buf, pk, buf+RNDBYTES_LEN);                                 /* coins are in buf+NEWHOPE_SYMBYTES */
-
-  shake256(ss, RNDBYTES_LEN, buf, RNDBYTES_LEN);  /* hash pre-k to ss */
+  PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_enc(ct, buf, pk, buf+RNDBYTES_LEN); /* coins are in buf+NEWHOPE_SYMBYTES */
+  
+  shake256_inc_init(&state)
+  shake256_inc_absorb(&state, buf, RNDBYTES_LEN);
+  shake256_inc_absorb(&state, ct, EXHOPE_CPAPKE_CIPHERTEXTBYTES);
+  shake256_inc_finalize(&state);
+  
+  shake256_inc_squeeze(ss, OQS_KEM_extrahope512_length_shared_secret, &state);  /* hash concatenation of plaintext and ciph to ss */
   return 0;
 }
 
+// void shake256_inc_init(shake256incctx *state);
+// void shake256_inc_absorb(shake256incctx *state, const uint8_t *input, size_t inlen);
+// void shake256_inc_finalize(shake256incctx *state);
+// void shake256_inc_squeeze(uint8_t *output, size_t outlen, shake256incctx *state);
 
 /*************************************************
 * Name:        crypto_kem_dec
@@ -63,9 +80,15 @@ int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_enc(unsigned char *ct, unsigned char *
 **************************************************/
 int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_dec(unsigned char *ss, const unsigned char *ct, const unsigned char *sk)
 {
+  shake256incctx state;
   PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_dec(ss, ct, sk);
 
-  shake256(ss, RNDBYTES_LEN, ss, RNDBYTES_LEN);   /* hash pre-k to ss */
+  shake256_inc_init(&state)
+  shake256_inc_absorb(&state, ss, RNDBYTES_LEN);
+  shake256_inc_absorb(&state, ct, EXHOPE_CPAPKE_SECRETKEYBYTES);
+  shake256_inc_finalize(&state);
+  
+  shake256_inc_squeeze(ss, OQS_KEM_extrahope512_length_shared_secret, &state);  /* hash concatenation of plaintext and ciph to ss */
 
   return 0;
 }
