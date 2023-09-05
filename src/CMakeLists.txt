@@ -1,16 +1,17 @@
 add_subdirectory(common)
 add_subdirectory(crypto)
 
+if(ENABLE_KEM_BIKE)
+    add_subdirectory(kem/bike)
+    set(KEM_OBJS ${BIKE_OBJS})
+endif()
+
 # MY CUSTOM ALG
 if(ENABLE_KEM_EXTRAHOPE)
     add_subdirectory(kem/extrahope)
     set(KEM_OBJS ${KEM_OBJS} $<TARGET_OBJECTS:extrahope>)
 endif()
 
-if(ENABLE_KEM_BIKE)
-    add_subdirectory(kem/bike)
-    set(KEM_OBJS ${BIKE_OBJS})
-endif()
 if(ENABLE_KEM_FRODOKEM)
     add_subdirectory(kem/frodokem)
     set(KEM_OBJS ${KEM_OBJS} $<TARGET_OBJECTS:frodokem>)
@@ -56,6 +57,8 @@ if(ENABLE_SIG_SPHINCS)
     add_subdirectory(sig/sphincs)
     set(SIG_OBJS ${SIG_OBJS} $<TARGET_OBJECTS:sphincs>)
 endif()
+
+message(STATUS "KEM_OBJS: ${KEM_OBJS}")
 
 add_library(oqs kem/kem.c
                 ${KEM_OBJS}
