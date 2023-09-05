@@ -32,13 +32,13 @@ int PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_enc(unsigned char *ct, unsigned char *ss, 
 int PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_dec(unsigned char *ss, const unsigned char *ct, const unsigned char *sk);
 
 OQS_API OQS_STATUS OQS_KEM_extrahope_512_keypair(uint8_t *public_key, uint8_t *secret_key) {
-	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_keypair(public_key, secret_key);
+	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_kem_keypair(public_key, secret_key);
 }
 OQS_API OQS_STATUS OQS_KEM_extrahope_512_encaps(uint8_t *ciphertext, uint8_t *shared_secret, const uint8_t *public_key) {
-	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_enc(ciphertext, shared_secret, public_key);
+	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_kem_enc(ciphertext, shared_secret, public_key);
 }
 OQS_API OQS_STATUS OQS_KEM_extrahope_512_decaps(uint8_t *shared_secret, const unsigned char *ciphertext, const uint8_t *secret_key) {
-	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_dec(shared_secret, ciphertext, secret_key);
+	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_kem_dec(shared_secret, ciphertext, secret_key);
 }
 
 #endif
