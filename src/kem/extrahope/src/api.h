@@ -8,7 +8,7 @@
 #define CRYPTO_CIPHERTEXTBYTES CPAKEM_CIPH_LEN
 #define CRYPTO_BYTES           RNDBYTES_LEN
 
-#define CRYPTO_ALGNAME "testHope512-CPAKEM"
+#define CRYPTO_ALGNAME "extraHope512-1CCAKEM"
 
 int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_keypair(unsigned char *pk, unsigned char *sk);
 

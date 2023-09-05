@@ -52,12 +52,12 @@ int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_enc(unsigned char *ct, unsigned char *
 
   PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_enc(ct, buf, pk, buf+RNDBYTES_LEN); /* coins are in buf+NEWHOPE_SYMBYTES */
   
-  shake256_inc_init(&state)
+  shake256_inc_init(&state);
   shake256_inc_absorb(&state, buf, RNDBYTES_LEN);
   shake256_inc_absorb(&state, ct, EXHOPE_CPAPKE_CIPHERTEXTBYTES);
   shake256_inc_finalize(&state);
   
-  shake256_inc_squeeze(ss, OQS_KEM_extrahope512_length_shared_secret, &state);  /* hash concatenation of plaintext and ciph to ss */
+  shake256_inc_squeeze(ss, CRYPTO_BYTES, &state);  /* hash concatenation of plaintext and ciph to ss */
   return 0;
 }
 
@@ -83,12 +83,12 @@ int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_dec(unsigned char *ss, const unsigned 
   shake256incctx state;
   PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_dec(ss, ct, sk);
 
-  shake256_inc_init(&state)
+  shake256_inc_init(&state);
   shake256_inc_absorb(&state, ss, RNDBYTES_LEN);
   shake256_inc_absorb(&state, ct, EXHOPE_CPAPKE_SECRETKEYBYTES);
   shake256_inc_finalize(&state);
   
-  shake256_inc_squeeze(ss, OQS_KEM_extrahope512_length_shared_secret, &state);  /* hash concatenation of plaintext and ciph to ss */
+  shake256_inc_squeeze(ss, CRYPTO_BYTES, &state);  /* hash concatenation of plaintext and ciph to ss */
 
   return 0;
 }
