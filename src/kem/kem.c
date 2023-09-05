@@ -318,7 +318,7 @@ OQS_API OQS_KEM *OQS_KEM_new(const char *method_name) {
 		///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_NEW_CASE_START
 	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_extrahope_512)) {
 #ifdef OQS_ENABLE_KEM_extrahope_512
-		return OQS_KEM_extrahope512_new();
+		return OQS_KEM_extrahope_512_new();
 #else
 		return NULL;
 #endif
