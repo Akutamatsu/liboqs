@@ -18,7 +18,7 @@ OQS_KEM *OQS_KEM_extrahope_512_new() {
 	kem->length_public_key = OQS_KEM_extrahope_512_length_public_key;
 	kem->length_secret_key = OQS_KEM_extrahope_512_length_secret_key;
 	kem->length_ciphertext = OQS_KEM_extrahope_512_length_ciphertext;
-	kem->length_shared_secret = OQS_KEM_nextrahope_512_length_shared_secret;
+	kem->length_shared_secret = OQS_KEM_extrahope_512_length_shared_secret;
 
 	kem->keypair = OQS_KEM_extrahope_512_keypair;
 	kem->encaps = OQS_KEM_extrahope_512_encaps;
