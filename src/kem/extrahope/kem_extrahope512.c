@@ -27,9 +27,9 @@ OQS_KEM *OQS_KEM_extrahope_512_new() {
 	return kem;
 }
 
-int PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_keypair(unsigned char *pk, unsigned char *sk);
-int PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_enc(unsigned char *ct, unsigned char *ss, const unsigned char *pk);
-int PQCLEAN_EXTRAHOPE512_CLEAN_cpapke_dec(unsigned char *ss, const unsigned char *ct, const unsigned char *sk);
+int PQCLEAN_EXTRAHOPE512_CLEAN_kem_keypair(unsigned char *pk, unsigned char *sk);
+int PQCLEAN_EXTRAHOPE512_CLEAN_kem_enc(unsigned char *ct, unsigned char *ss, const unsigned char *pk);
+int PQCLEAN_EXTRAHOPE512_CLEAN_kem_dec(unsigned char *ss, const unsigned char *ct, const unsigned char *sk);
 
 OQS_API OQS_STATUS OQS_KEM_extrahope_512_keypair(uint8_t *public_key, uint8_t *secret_key) {
 	return (OQS_STATUS) PQCLEAN_EXTRAHOPE512_CLEAN_kem_keypair(public_key, secret_key);
