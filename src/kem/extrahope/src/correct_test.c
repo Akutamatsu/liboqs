@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+//#include "rand.h"
 #include "rng.h"
 #include "params.h"
 #include "api.h"
@@ -55,18 +56,18 @@ main()
         randombytes_init(seed, NULL, 256);
         
         // Generate the public/private keypair
-        if ( (ret_val = crypto_kem_keypair(pk, sk)) != 0) {
-            printf("crypto_kem_keypair returned <%d>\n", ret_val);
+        if ( (ret_val = PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_keypair(pk, sk)) != 0) {
+            printf("PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_keypair returned <%d>\n", ret_val);
             return KAT_CRYPTO_FAILURE;
         }
 
-        if ( (ret_val = crypto_kem_enc(ct, ss, pk)) != 0) {
-            printf("crypto_kem_enc returned <%d>\n", ret_val);
+        if ( (ret_val = PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_enc(ct, ss, pk)) != 0) {
+            printf("PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_enc returned <%d>\n", ret_val);
             return KAT_CRYPTO_FAILURE;
         }
         
-        if ( (ret_val = crypto_kem_dec(ss1, ct, sk)) != 0) {
-            printf("crypto_kem_dec returned <%d>\n", ret_val);
+        if ( (ret_val = PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_dec(ss1, ct, sk)) != 0) {
+            printf("PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_dec returned <%d>\n", ret_val);
             return KAT_CRYPTO_FAILURE;
         }
         

@@ -85,7 +85,7 @@ int PQCLEAN_EXTRAHOPE512_CLEAN_crypto_kem_dec(unsigned char *ss, const unsigned 
 
   shake256_inc_init(&state);
   shake256_inc_absorb(&state, ss, RNDBYTES_LEN);
-  shake256_inc_absorb(&state, ct, EXHOPE_CPAPKE_SECRETKEYBYTES);
+  shake256_inc_absorb(&state, ct, EXHOPE_CPAPKE_CIPHERTEXTBYTES);
   shake256_inc_finalize(&state);
   
   shake256_inc_squeeze(ss, CRYPTO_BYTES, &state);  /* hash concatenation of plaintext and ciph to ss */
