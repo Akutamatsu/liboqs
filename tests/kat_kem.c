@@ -35,9 +35,8 @@ void fprintBstr(FILE *fp, const char *S, const uint8_t *A, size_t L) {
 	fprintf(fp, "\n");
 }
 
-OQS_STATUS kem_kat(const char *method_name) {
+OQS_STATUS kem_kat(const char *method_name, size_t num) {
 
-	uint8_t entropy_input[48];
 	uint8_t seed[48];
 	FILE *fh = NULL;
 	OQS_KEM *kem = NULL;
@@ -55,19 +54,10 @@ OQS_STATUS kem_kat(const char *method_name) {
 		goto algo_not_enabled;
 	}
 
-	for (size_t i = 0; i < 48; i++) {
-		entropy_input[i] = i;
-	}
-
-	rc = OQS_randombytes_switch_algorithm(OQS_RAND_alg_nist_kat);
-	if (rc != OQS_SUCCESS) {
-		goto err;
-	}
-	OQS_randombytes_nist_kat_init(entropy_input, NULL, 256);
 
 	fh = stdout;
 
-	fprintf(fh, "count = 0\n");
+	fprintf(fh, "count = %ld\n", num);
 	OQS_randombytes(seed, 48);
 	fprintBstr(fh, "seed = ", seed, 48);
 
@@ -135,8 +125,9 @@ cleanup:
 }
 
 int main(int argc, char **argv) {
-
-	if (argc != 2) {
+	uint8_t entropy_input[48];
+	OQS_STATUS rc;
+	if (argc != 3) {
 		fprintf(stderr, "Usage: kat_kem algname\n");
 		fprintf(stderr, "  algname: ");
 		for (size_t i = 0; i < OQS_KEM_algs_length; i++) {
@@ -152,9 +143,22 @@ int main(int argc, char **argv) {
 	}
 
 	char *alg_name = argv[1];
-	OQS_STATUS rc = kem_kat(alg_name);
+	const size_t num = strtol(argv[2], 0, 10);
+	for (size_t i = 0; i < 48; i++) {
+		entropy_input[i] = i;
+	}
+
+	rc = OQS_randombytes_switch_algorithm(OQS_RAND_alg_nist_kat);
 	if (rc != OQS_SUCCESS) {
 		return EXIT_FAILURE;
+	}
+	OQS_randombytes_nist_kat_init(entropy_input, NULL, 256);
+
+	for(size_t i = 0; i < num; i++){
+		rc = kem_kat(alg_name, i);
+		if (rc != OQS_SUCCESS) {
+			return EXIT_FAILURE;
+		}
 	}
 	return EXIT_SUCCESS;
 }

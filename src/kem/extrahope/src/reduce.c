@@ -3,16 +3,16 @@
 #include "reduce.h"
 
 /*************************************************
-* Name:        montgomery_reduce
+* Name:        my_reduce
 *
-* Description: Montgomery reduction; given a 32-bit integer a, computes
-*              16-bit integer congruent to a * R^-1 mod q,
-*              where R=2^16
+* Description: Montgomery reduction; given a product 'a' of two 16-bit integer,
+*              computes 16-bit integer congruent to a mod q,
+*              where q=257
 *
 * Arguments:   - int32_t a: input integer to be reduced;
-*                           has to be in {-q2^15,...,q2^15-1}
+*                           has to be in {-32768, ..., 32767}
 *
-* Returns:     integer in {-q+1,...,q-1} congruent to a * R^-1 modulo q.
+* Returns:     integer in {-128, ..., 128} congruent to a mod q.
 **************************************************/
 int16_t my_reduce(int32_t a)
 {
@@ -20,8 +20,8 @@ int16_t my_reduce(int32_t a)
     int16_t r;
 
     r = a & 0xff; // bitlen(r) = 8 
-    tmp = (a >> 8); // bitlen(tmp) = 8 or 9
-    r = r - tmp; // bitlen(|r-tmp|) < 9
+    tmp = (a >> 8); // tmp can be positive or negative
+    r = r - tmp;
 
     return r;
 }
