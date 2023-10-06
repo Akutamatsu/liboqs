@@ -42,6 +42,12 @@ extern "C" {
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALG_IDENTIFIER_START
 /** Algorithm identifier for extraHope512 KEM. */
 #define OQS_KEM_alg_extrahope_512 "extraHope512"
+/** Algorithm identifier for Kyber512 KEM. */
+#define OQS_KEM_alg_kyber_512 "Kyber512"
+/** Algorithm identifier for Kyber768 KEM. */
+#define OQS_KEM_alg_kyber_768 "Kyber768"
+/** Algorithm identifier for Kyber1024 KEM. */
+#define OQS_KEM_alg_kyber_1024 "Kyber1024"
 /** Algorithm identifier for Kyber512-90s KEM. */
 #define OQS_KEM_alg_kyber_512_90s "Kyber512-90s"
 /** Algorithm identifier for Kyber768-90s KEM. */
@@ -114,7 +120,7 @@ extern "C" {
 // EDIT-WHEN-ADDING-KEM
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALGS_LENGTH_START
 /** Number of algorithm identifiers above. */
-#define OQS_KEM_algs_length 40
+#define OQS_KEM_algs_length 43
 ///// OQS_COPY_FROM_PQCLEAN_FRAGMENT_ALGS_LENGTH_END
 
 /**
